@@ -11,32 +11,32 @@
     "LockedAppConfig": {
       "VersionCode": 32,
       "VersionName": "1.0.26",
-      "ConnectedMessage": "@Bakys",
+      "ConnectedMessage": "<MESSAGE>",
       "ExpiredAtTimestamp": 0,
       "TunnelType": "SSH",
-      "IsSshLocked": true
+      "IsSshLocked": false
     },
     "EncryptedLockedConfig": {
       "InjectConfig": {
-        "IsEncrypted": true,
+        "IsEncrypted": false,
         "EncryptedMode": "PROXY_SNI",
-        "EncryptedProxyHost": "youtube.com",
+        "EncryptedProxyHost": "localhost", 
         "EncryptedProxyPort": "443",
-        "EncryptedServerNameIndication": "youtube.com",
-        "EncryptedPayload": "GET / HTTP/1.1[crlf]Host: new-927775848678.europe-west1.run.app[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: Websocket[crlf][crlf]",
+        "EncryptedServerNameIndication": "<SNI_HOST>",
+        "EncryptedPayload": "GET / HTTP/1.1[crlf]Host: <WS_HOST>[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
         "EncryptedDnsttDnsHost": "1.1.1.1",
         "EncryptedDnsttDnsPort": "53"
       },
       "SshConfig": {
-        "IsEncrypted": true,
-        "IsLocked": true,
-        "EncryptedHost": "localhost",
+        "IsEncrypted": false,
+        "IsLocked": false,
+        "EncryptedHost": "<SSH_HOST>",
         "EncryptedPort": "22",
-        "EncryptedUsername": "mola",
-        "EncryptedPassword": "mola567"
+        "EncryptedUsername": "mono",
+        "EncryptedPassword": "mono55"
       },
       "V2RayConfig": {
-        "IsEncrypted": true,
+        "IsEncrypted": false,
         "EncryptedConfig": []
       }
     }

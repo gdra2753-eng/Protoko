@@ -1,15 +1,24 @@
+# استخدام نسخة مستقرة وخفيفة من Ubuntu
 FROM ubuntu:22.04
 
-RUN apt update && apt install -y openssh-server
+# تثبيت الخدمات الأساسية (SSH و أدوات المساعدة)
+RUN apt-get update && apt-get install -y \
+    openssh-server \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# إنشاء مستخدم
-RUN useradd -m android && echo "android:android10" | chpasswd
+# إعداد بيانات الدخول (خاصة بك)
+# المستخدم: zin_user | كلمة المرور: ZinCloud@2024
+RUN useradd -m -s /bin/bash zin_user && echo "zin_user:ZinCloud@2024" | chpasswd
 
-# إعداد SSH
+# إعدادات أمان الـ SSH ليتوافق مع الاتصال السحابي
 RUN mkdir /var/run/sshd
-RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -i 's/Port 22/Port 8080/' /etc/ssh/sshd_config
 
-EXPOSE 22
+# فتح المنفذ 8080 (المنفذ الافتراضي لـ Cloud Run)
+EXPOSE 8080
 
-CMD ["/usr/sbin/sshd", "-D"]
+# تشغيل السيرفر
+CMD ["/usr/sbin/sshd", "-D", "-e"]

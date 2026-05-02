@@ -30,7 +30,7 @@
       "SshConfig": {
         "IsEncrypted": true,
         "IsLocked": true,
-        "EncryptedHost": "127.0.0.1",
+        "EncryptedHost": "localhost",
         "EncryptedPort": "22",
         "EncryptedUsername": "andro",
         "EncryptedPassword": "andro17"

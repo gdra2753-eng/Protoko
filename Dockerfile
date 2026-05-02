@@ -1,24 +1,15 @@
-# اختيار نظام التشغيل (ألبين خفيف جداً)
-FROM alpine:latest
+FROM ubuntu:22.04
 
-# تثبيت الأدوات اللازمة
-RUN apk add --no-cache openssh-server bash curl
+RUN apt update && apt install -y openssh-server
 
-# إضافة مستخدم للـ SSH وتعيين كلمة المرور
-RUN adduser -D android && echo "android:android10" | chpasswd
+# إنشاء مستخدم
+RUN useradd -m android && echo "android:android10" | chpasswd
 
-# توليد مفاتيح التشفير للسيرفر
-RUN ssh-keygen -A 
-
-# السماح بالاتصال عبر كلمة المرور
+# إعداد SSH
+RUN mkdir /var/run/sshd
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-# تحميل أداة التوصيل (wstunnel)
-RUN curl -L https://github.com | tar -xz \
-    && mv wstunnel /usr/local/bin/
+EXPOSE 22
 
-# المنفذ الذي يطلبه Google Cloud Run
-EXPOSE 8080
-
-# أمر التشغيل النهائي (تشغيل الـ SSH والـ Websocket معاً)
-CMD /usr/sbin/sshd && wstunnel server ws://0.0.0.0:8080 --restrictTo=127.0.0.1:22
+CMD ["/usr/sbin/sshd", "-D"]

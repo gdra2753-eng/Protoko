@@ -1,18 +1,14 @@
-name: Docker Image CI
+version: '3.8'
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+services:
+  zin-ssh-server:
+    build: .
+    image: zin-private-ssh:latest
+    container_name: zin_ssh_container
+    ports:
+      - "8080:8080"  # منفذ Websocket (الذي يوضع في الهوست الخاص بالتطبيق)
+      - "2222:22"    # منفذ SSH العادي (اختياري)
+    restart: always
+    environment:
+      - USER_NAME=zin_user
+      - USER_PASS=ZinCloud@2024

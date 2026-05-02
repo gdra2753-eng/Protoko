@@ -1,44 +1,35 @@
 {
-  "type": "SSH",
-  "name": "android",
-  "sshTunnelConfig": {
-    "injectConfig": {
-      "enabled": true,
-      "mode": "PROXY_SNI"
-    }
-  },
-  "encryptedLockedConfig": {
-    "LockedAppConfig": {
-      "VersionCode": 32,
-      "VersionName": "1.0.26",
-      "ConnectedMessage": "<MESSAGE>",
-      "ExpiredAtTimestamp": 0,
-      "TunnelType": "SSH",
-      "IsSshLocked": false
+    "type": "SSH",
+    "name": "GCP Cloud Run SSH",
+    "sshTunnelConfig": {
+        "injectConfig": {
+            "enabled": true,
+            "mode": "PROXY_SNI"
+        }
     },
-    "EncryptedLockedConfig": {
-      "InjectConfig": {
-        "IsEncrypted": false,
-        "EncryptedMode": "PROXY_SNI",
-        "EncryptedProxyHost": "localhost", 
-        "EncryptedProxyPort": "443",
-        "EncryptedServerNameIndication": "<SNI_HOST>",
-        "EncryptedPayload": "GET / HTTP/1.1[crlf]Host: <WS_HOST>[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
-        "EncryptedDnsttDnsHost": "1.1.1.1",
-        "EncryptedDnsttDnsPort": "53"
-      },
-      "SshConfig": {
-        "IsEncrypted": false,
-        "IsLocked": false,
-        "EncryptedHost": "<SSH_HOST>",
-        "EncryptedPort": "22",
-        "EncryptedUsername": "mono",
-        "EncryptedPassword": "mono55"
-      },
-      "V2RayConfig": {
-        "IsEncrypted": false,
-        "EncryptedConfig": []
-      }
+    "lockedConfig": {
+        "AppConfig": {
+            "VersionCode": 1,
+            "VersionName": "1.0.0",
+            "ConnectedMessage": "تم الاتصال بنجاح بـ Cloud Run",
+            "TunnelType": "SSH",
+            "IsSshLocked": false
+        },
+        "Config": {
+            "InjectConfig": {
+                "ProxyHost": "youtube.com",
+                "ProxyPort": "443",
+                "ServerNameIndication": "youtube.com",
+                "Payload": "GET / HTTP/1.1[crlf]Host: [ضع_رابط_cloud_run_هنا][crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: Websocket[crlf][crlf]",
+                "DnsttDnsHost": "1.1.1.1",
+                "DnsttDnsPort": "53"
+            },
+            "SshConfig": {
+                "Host": "[ضع_رابط_cloud_run_هنا_بدون_https]",
+                "Port": "443",
+                "Username": "android",
+                "Password": "android10"
+            }
+        }
     }
-  }
 }

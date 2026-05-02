@@ -1,29 +1,29 @@
 {
   "type": "SSH",
-  "name": "Zin CloudRun SSH",
+  "name": "Zin Private SSH",
   "sshTunnelConfig": {
     "injectConfig": {
       "enabled": true,
-      "mode": "youtube.com"
+      "mode": "PROXY_SNI"
     }
   },
   "encryptedLockedConfig": {
     "LockedAppConfig": {
       "VersionCode": 32,
       "VersionName": "1.0.26",
-      "ConnectedMessage": "Connected ✔",
+      "ConnectedMessage": "تم الاتصال بسيرفر Zin بنجاح ✔",
       "ExpiredAtTimestamp": 0,
       "TunnelType": "SSH",
       "IsSshLocked": true
     },
     "EncryptedLockedConfig": {
       "InjectConfig": {
-        "IsEncrypted": true,
-        "EncryptedMode": "youtube.com",
-        "EncryptedProxyHost": "cloudflare.com",
+        "IsEncrypted": false,
+        "EncryptedMode": "PROXY_SNI",
+        "EncryptedProxyHost": "youtube.com",
         "EncryptedProxyPort": "443",
-        "EncryptedServerNameIndication": "cloudflare.com",
-        "EncryptedPayload": "GET / HTTP/1.1[crlf]Host: YOUR_APP.run.app[crlf]Connection: Upgrade[crlf]Upgrade: websocket[crlf]User-Agent: [ua][crlf][crlf]",
+        "EncryptedServerNameIndication": "youtube.com",
+        "EncryptedPayload": "GET / HTTP/1.1[crlf]Host: [YOUR_APP_LINK].run.app[crlf]Connection: Upgrade[crlf]Upgrade: websocket[crlf]User-Agent: [ua][crlf][crlf]",
         "EncryptedDnsttDnsHost": "1.1.1.1",
         "EncryptedDnsttDnsPort": "53"
       },
@@ -32,8 +32,8 @@
         "IsLocked": true,
         "EncryptedHost": "localhost",
         "EncryptedPort": "22",
-        "EncryptedUsername": "andro",
-        "EncryptedPassword": "andro17"
+        "EncryptedUsername": "zin_user",
+        "EncryptedPassword": "ZinCloud@2024"
       },
       "V2RayConfig": {
         "IsEncrypted": true,
